@@ -1,0 +1,700 @@
+@font-face {
+    font-family: 'gotham book';
+    src: url('../fonts/gotham-book-webfont.eot');
+    src: url('../fonts/gotham-book-webfontd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/gotham-book-webfont.woff') format('woff'),
+    url('../fonts/gotham-book-webfont.ttf') format('truetype'),
+    url('../fonts/gotham-book-webfont.svg#gotham_bookregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'gotham xlight';
+    src: url('../fonts/gotham-xlight-webfont.eot');
+    src: url('../fonts/gotham-xlight-webfontd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/gotham-xlight-webfont.woff') format('woff'),
+    url('../fonts/gotham-xlight-webfont.ttf') format('truetype'),
+    url('../fonts/gotham-xlight-webfont.svg#gotham_extralightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.lfloat{
+    float: left;
+}
+.rfloat{
+    float: right;
+}
+.clear{
+    clear: both;
+}
+.clearfix{
+    overflow: hidden;
+}
+.clearfix:after{
+    clear: both;
+    content: " ";
+}
+
+body{
+    font: normal 0.9em "gotham book", helvetica, arial, sans-serif;
+}
+@media only screen and (max-width: 320px)  {
+    body{
+        font: normal 0.6em "gotham book", helvetica, arial, sans-serif;
+    }
+}
+.fixed-top{
+    position: fixed;
+    top: 0;
+}
+.menubar{
+    background: transparent;
+    color: rgb(255, 255, 255);
+    font-size: 1em;
+    z-index: 5;
+    min-width: 100%;
+    max-width: 6%;
+    min-height: 60px;
+    transition: all 1s ease-in-out 0s;
+}
+
+.menubar .logo{
+    background: url('../img/ROD-logo.png') no-repeat scroll 0 0 transparent;
+    opacity: 0;
+    display: none;
+    margin: 10px 0 0 0;
+    filter: alpha(opacity=0);
+    -ms-opacity: 0;
+    width: 106px;
+    height: 50px;
+}
+.menubar.changed .logo{
+    display: block;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -ms-opacity: 1;
+}
+.menubar.changed{
+    background: #f12f6f;
+}
+.bottom-wrap .btn-wrap{
+    display: block;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    -ms-opacity: 1;
+}
+.menubar .logo a{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.mobile-menu-btn{
+    color: white;
+    display: none;
+    font-size: 30px;
+    text-align: center;
+    max-width: 50px;
+    width: 20%;
+    min-height: 60px;
+    line-height: 59px;
+    cursor: pointer;
+}
+.mobile-menu-btn.active{
+    background: rgba(0,0,0,0.2);
+}
+.centered{
+    max-width: 960px;
+    margin: 0 auto;
+    width: 100%;
+}
+.navs{
+    padding: 20px 10px;
+    min-height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: block;
+}
+.navs li{
+    float: left;
+    margin-right: 30px;
+    list-style: none;
+}
+.navs li a{
+    color: white;
+    text-decoration: none;
+}
+.navs li:last-child{
+    /*font-weight: bold;*/
+    margin-right: 20px;
+}
+#container{
+    top: 100%
+}
+.container{
+    background: #f8f8f8;
+    position: relative;
+    z-index: 25;
+}
+
+.screen-wrap{
+    background: #fc7f5e;
+    min-height: 100%;
+    min-width: 100%;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 50px;
+    /*padding: 60px 0 10px;*/
+}
+
+.screen-wrap1{
+    background: #faf0d2;
+    min-height: 100%;
+    min-width: 100%;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 250px;
+}
+
+.screen-wrap2{
+    background: #fcdc60;
+    min-height: 100%;
+    min-width: 100%;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 250px;
+}
+
+.screen-wrap3{
+    background: #f0c4cc;
+    min-height: 100%;
+    min-width: 100%;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 250px;
+}
+
+.screen-wrap.intro{
+    overflow: hidden;
+    padding: 0;
+    display: block;
+    /*position: fixed;*/
+    z-index: 0;
+    background-color: #363536;
+    min-height: 100%;
+    min-width: 100%;
+    background-attachment: fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')";
+}
+/*.screen-wrap.intro .bottom-wrap{*/
+    /*background: url('/img/rod-intro-btm.jpg') no-repeat scroll 0 0 transparent;*/
+    /*background-size: contain;*/
+/*}*/
+.screen-wrap.task{
+    box-shadow: 0px -2px 5px rgba(0,0,0,0.6);
+}
+.column{
+    padding-top: 15%;
+}
+
+.title-wrap{
+    /* margin: 27% 0 0 0; */
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    max-width: 960px;
+    top: 30%;
+}
+.title-wrap .img-text{
+    background: #222;
+    background: url('../img/ROD-title.png') no-repeat scroll center center #222;
+    /*background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-webkit-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    padding: 4% 0;
+    text-indent: -9999px;
+    width: 100%;
+    color: white;
+    content: "THE ROCKSTAR OF DESIG"
+}
+.title-wrap .title{
+    background: #cc2700;
+    color: white;
+    /* font-size: 24px; */
+    font-size: 1.5em;
+    padding: 15px 0;
+}
+
+.bottom{
+    position: absolute;
+    bottom: 20px;
+}
+.screen-wrap.intro .bottom-wrap{
+    position: fixed;
+    z-index: 0;
+}
+.bottom-wrap{
+    max-width: 960px;
+    min-height: 10%;
+    width: 100%;
+}
+.bottom-wrap .logo-wrap{
+    position: absolute;
+    max-width: 174px;
+    width: 45%;
+    color: white;
+    min-height: 56px;
+    padding: 0px 10px;
+}
+.bottom-wrap .logo-wrap.bigrock{
+    max-width: 234px;
+}
+.bottom-wrap .logo-wrap.dotnet{
+    width: 38%;
+}
+.bottom-wrap .bigrock, .bottom-wrap .dotnet{
+    bottom: 0;
+}
+.bottom-wrap .bigrock{
+    left: 0;
+}
+.bottom-wrap .dotnet{
+    right: 0;
+}
+.bottom-wrap .bigrock .br-logo{
+    background: url("../img/BR-logo.png") no-repeat scroll 0 0 transparent;
+    content: "bigrock";
+    text-indent: -9999px;
+    /*padding: 24px 0;*/
+    max-width: 235px;
+    min-height: 60px;
+    background-size: contain;
+    margin-top: 5px;
+}
+.bottom-wrap .dotnet .net-logo{
+    background: url("../img/net-logo.png") no-repeat scroll 0 0 transparent;
+    content: "dot net";
+    text-indent: -9999px;
+    /*padding: 24px 0;*/
+    min-height: 59px;
+    max-width: 100%;
+    background-size: contain;
+    margin-top: 5px;
+}
+.bottom-wrap .btn-wrap{
+    position: relative;
+    width: 100%;
+    content: "next";
+    text-indent: -9999px;
+    color: white;
+    /*background: url('/img/btn-nxt.png') no-repeat scroll 0 0 transparent;*/
+    min-height: 58px;
+    background-size: contain;
+    margin-top: 25px;
+}
+
+.bottom-wrap .btn-wrap .next-btn{
+    cursor: pointer;
+    min-width: 45px;
+    min-height: 45px;
+    max-width: 45px;
+    max-height: 45px;
+    background: url('../img/arrows.png') no-repeat scroll 45% -64px transparent;
+    margin: 0 auto;
+}
+.bottom-wrap .btn-wrap .next-btn.white{
+    background-position: 45% -129px;
+}
+.bottom-wrap .btn-wrap .next-btn:hover{
+    background-position: 45% 0;
+}
+.section-title{
+    font-family: "gotham xlight";
+    font-size: 72px;
+    margin-bottom: 30px;
+    max-height: 79px;
+    font-weight: 100;
+}
+.task-img{
+    background: url('../img/task-img.png') no-repeat scroll top left transparent;
+    background-size: contain;
+    min-width: 210px;
+    min-height: 210px;
+}
+.task-content{
+    min-width: 286px;
+    max-width: 735px;
+}
+.section-content{
+    min-width: 286px;
+    /*max-width: 735px;*/
+}
+.list{
+    list-style: none;
+    margin-left: 18px;
+}
+.list li{
+    padding: 4px 0;
+    list-style: disc;
+}
+/*.list li:before{*/
+    /*content: "* ";*/
+    /*list-style: none;*/
+/*}*/
+
+.prizes-content{
+
+}
+.prizes-content .column-1, .prizes-content .column-2, .prizes-content .column-3{
+    height: 316px;
+    width: 100%;
+    /*max-width: 294px;*/
+    margin-right: 198px;
+    text-align: center;
+}
+.prizes-content .column-1{
+    max-width: 294px;
+}
+.prizes-content .column-2{
+    max-width: 146px;
+}
+.prizes-content .column-3{
+    max-width: 118px;
+    margin-right: 0px !important;
+}
+.column-1 .prizes-img, .column-2 .prizes-img, .column-3 .prizes-img{
+    background-size: contain;
+    height: 242px;
+}
+.column-1 .prizes-img{
+    background: url('../img/imac-img.png') no-repeat 50% 50% transparent;
+}
+.column-2 .prizes-img{
+    background: url('../img/ipadair-img.png') no-repeat 50% 50% transparent;
+}
+.column-3 .prizes-img{
+    background: url('../img/nexus7-img.png') no-repeat 50% 50% transparent;
+}
+.prizes-content .prizes-text.first{
+    font-size: 18px;
+    font-weight: 100;
+    margin-top: 30px;
+    font-family: "gotham xlight", "gotham book", arial, helvetica, sans-serif;
+}
+.prizes-content .prizes-text.second{
+    font-size: 24px;
+}
+
+/* judges section */
+.judges-content{
+
+}
+.judges-content .column-1, .judges-content .column-2, .judges-content .column-3 {
+    width: 100%;
+    max-width: 180px;
+    min-height: 260px;
+    padding: 10px;
+    margin-right: 178px;
+    box-sizing: padding-box;
+    -moz-box-sizing: padding-box;
+    -webkit-box-sizing: padding-box;
+    -o-box-sizing: padding-box;
+    text-align: center;
+}
+.judges-content .column-3{
+    margin-right: 0px !important;
+}
+.column-1 .judges-img, .column-2 .judges-img, .column-3 .judges-img{
+    max-width: 148px;
+    width: 100%;
+    min-height: 148px;
+    background-size: contain;margin: 0px auto;
+}
+.column-1 .judges-img{
+    background: url('../img/sunit-singh-pic.jpg') no-repeat 50% 50% transparent;
+}
+.column-2 .judges-img{
+    background: url('../img/sunil-pai-pic.jpg') no-repeat 50% 50% transparent;
+}
+.column-3 .judges-img{
+    background: url('../img/ninad-raval-pic.jpg') no-repeat 50% 50% transparent;
+}
+.judges-content .judges-text{
+
+}
+.judges-content .judges-text.first{
+    font-size: 24px;
+    margin-top: 20px;
+}
+.judges-content .judges-text.second{
+    font-size: 14px;
+    margin: 10px 0px;
+    line-height: 17px;
+}
+/* END: judges section */
+/* rules section */
+.rules-img{
+    background: url('../img/guidelines-img.png') no-repeat scroll top left transparent;
+    background-size: contain;
+    min-width: 230px;
+    min-height: 210px;
+}
+.rules-content{
+    /*min-width: 390px;*/
+    /*max-width: 735px;*/
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #d7d7d7;
+}
+.rules .row2{
+    padding-top: 10px;
+}
+.rules .row2 .sub-title{
+    font-size:  30px;
+    min-width: 231px;
+    padding: 0px 22px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+}
+/* END: Rules section */
+/* register section */
+.register{
+
+}
+.register form input[type=text], .register form input[type=password], .register form select, .signin form input[type=text], .signin form input[type=password], .signin form input[type=password], .resetpass form input[type=input]{
+    background: white;
+    padding: 10px;
+    border: 1px solid #dedede;
+    font-size: 18px;
+    width: 100%;
+    color: #273740;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    max-height: 49px;
+    box-sizing: border-box;
+    border-radius: 0px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+}
+.register form .rows.first input[type=text], .register form .rows.second input[type=text]{
+    max-width: 388px;
+}
+/*.register form .rows:nth-child(n+4) input[type=text], .register form .rows:nth-child(n+4) select{*/
+    /*max-width: 245px;*/
+/*}*/
+.register form select{
+    width: 100%;
+    background: url('../img/dd-bg.jpg') no-repeat scroll 95% 50% white !important;
+}
+.register form label, .signin form label, .resetpass form label {
+    font-size: 18px;
+    display: block;
+    color: #273740;
+}
+.register form label em, .signin form label em{
+    color: red;
+}
+.signin form label.error, .resetpass form label.error{
+    font-size: 12px;
+    color: red;
+}
+.registerfrm .rows{
+    width: 100%;
+    margin-top: 20px;
+}
+.registerfrm .rows.fifth{
+    display: none;
+}
+.registerfrm .rows .left-column, .registerfrm .rows .right-column{
+    width: 100%;
+    max-width: 392px;
+}
+.registerfrm .rows .left-column{
+    margin-right: 77px;
+}
+.registerfrm .rows .column-1, .registerfrm .rows .column-2, .registerfrm .rows .column-3{
+    margin-right: 60px;
+    max-width: 254px;
+    width: 100%;
+}
+.registerfrm .btn-wrap{
+    margin: 30px 0px;
+}
+.ui-btn-green{
+    background: #24ca8e;
+    padding: 15px 30px;
+    border: none;
+    font-size: 18px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.ui-btn-green:hover{
+    box-shadow: inset 0px -3px 1px rgba(0,0,0,0.4);
+}
+.ui-btn-green:active{
+    box-shadow: inset 0px -1px 1px rgba(0,0,0,0.4);
+}
+.ajaxloader{
+    padding: 0px 8px;
+    margin-left: 20px;
+    background: url('../img/ajax-loader.gif') no-repeat scroll 0 0 transparent;
+    visibility: hidden;
+}
+.registerfrm input.error, .registerfrm select.error{
+    border: 1px solid red;
+}
+.registerfrm label.error, .updatepassfrm label.error{
+    font-size: 12px;
+    color: red;
+    padding-top: 5px;
+}
+.registerfrm .frmseperator{
+    font-size: 24px;
+    margin: 55px 0 40px;
+    padding: 10px 0px;
+    border-bottom: 1px solid #273740;
+}
+.rows.sixth .row-2, .rows.sixth .row-3{
+    margin-top: 15px;
+}
+.rows.sixth .row-1,.rows.sixth .row-2,.rows.sixth .row-3{
+    width: 100%;
+}
+/* END: registrations section */
+
+.msg-holder{
+    border-radius: 8px;
+    border: 1px solid;
+    padding: 20px 15px;
+    font-size: 15px;
+}
+.msg-holder.error{
+    color: red;
+    border-color: red;
+}
+.msg-holder.success{
+    color: #24ca8e;
+    border-color: #24ca8e;
+}
+
+/* sign up form */
+.signin.column .rows, .resetpass.column .rows{
+    margin-top: 15px;
+}
+.signin.column .rows .column1, .resetpass.column .rows .column1{
+    max-width: 45%;
+    overflow: hidden;
+}
+.signin.column .rows.third .column1 a,.resetpass.column .rows.second .column1 a {
+    float: right;
+    margin-top: 16px;
+}
+.signin.column .rows.third .column1 input[type=submit], .resetpass.column .rows.second .column1 input[type=submit]{
+    float: left;
+}
+.setnewpass .column-1{
+    max-width: 320px;
+}
+.setnewpass .column-1 .row-2, .setnewpass .column-1 .row-3, .setnewpass .column-1 .row-4{
+    width: 100%;
+    margin-top: 10px;
+}
+/* END: signup form */
+
+.giturlsubmitfrm input[type=text]{
+    width: 58%;
+    height: 45px;
+    font-size: 14px;
+    display: block;
+}
+.giturlsubmitfrm .row-1, .giturlsubmitfrm .row-2{
+    margin-top: 15px;
+}
+.giturlsubmitfrm label.error{
+    font-size: 12px;
+    color: red;
+}
+.thankyou.centered {
+    font-size: 20px;
+}
+.thankyou .row1{
+    margin: 30px 0 20px;
+}
+.thankyou .row2{
+    margin: 12% 0 10px;
+    background: url('../img/rockstarofdesign-img.png') no-repeat scroll 50% 50% transparent;
+    height: 110px;
+    overflow: hidden;
+    background-size: contain;
+}
+.dotted-border{
+    border-width: 1px 0 1px 0;
+    border-style: dotted;
+    border-color: #d3d3d3;
+}
+.thankyou .row3{
+    padding: 25px 15px;
+}
+.thankyou .row3 img{
+    vertical-align: middle;
+    margin-left: 40px;
+}
+.thankyou .row3 .logo-wrap{
+    max-width: 770px;
+    width: 100%;
+    margin: 0px auto;
+}
+.thankyou .row4{
+    height: 50px;
+    padding: 15px 10px;
+}
+.thankyou .row4 .contactdiv{
+    max-width: 300px;
+    margin-top: 20px;
+}
+.thankyou .row4 .contactdiv a{
+    font-size: 16px;
+}
+.thankyou .row4 .social-btns{
+    height: 69px;
+    max-width: 300px;
+    width: 30%;
+}
+.thankyou .row4 .social-btns a{
+    background: url('../img/social-sprite.png') no-repeat scroll 0 0 transparent;
+    /* padding: 20px 10px; */
+    display: block;
+    height: 48px;
+    width: 48px;
+    float: left;
+    margin: 10px;
+    color: #5b676d;
+}
+.thankyou .row4 .social-btns a.ico-facebook{
+
+}
+.thankyou .row4 .social-btns a.ico-twitter{
+    background-position: 0px -65px;
+}
+.thankyou .row4 .social-btns a.ico-gplus{
+    background-position: 0px -127px;
+}
+.thankyou .row4 .social-btns a.ico-youtube{
+    background-position: 0px -192px;
+}
