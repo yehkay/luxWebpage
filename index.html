@@ -6,6 +6,7 @@
     <meta name="description" content="Personal Website" />
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
     
 
     <link type="text/css" href="css/styles.css" rel="stylesheet" />
@@ -16,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="css/app.css">
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+
 
 </head>
 <body>
@@ -36,7 +38,10 @@
         <div id="ROD-title" class=" container">
             <h1 id="page1Name" class="img-text">Lakshmi Chenicheri</h1>
             <div id="downBtn" onclick="snapto('.screen-wrap1.task')"><span id="dArrow">&or;</span></div>
-            <div id="description">Graduate Student, MS IT, majoring in Data Analytics</div>
+            <div id="description">
+                <p id="line1">Graduate Student, MS-IT, RPI</p>
+                <p id="line2">Major: Data Science & Analytics</p> 
+            </div>
         </div>
     </div>
 
@@ -47,29 +52,30 @@
                 <div id="visual1" class="col-xs-12 col-sm-6 col-md-4 visual">
                     <img src="img/thumb.jpg" class="img-circle">
                     <div id="summary1" class="summary">
-                        <h2></h2>
-                        <p></p>
+                        <h2>Tweet monitor</h2>
+                        <p >visualizes twitter's sample stream providing info like tweet count, health, rate etc,.</p>
                     </div>
                 </div>
                 <div id="visual2" class="col-xs-12 col-sm-6 col-md-4 visual">
                     <img src="img/thumb.jpg" class="img-circle">
                     <div id="summary2" class="summary">
-                        <h2></h2>
-                        <p></p>
+                        <h2>Tweet monitor</h2>
+                        <p >visualizes twitter's sample stream providing info like tweet count, health, rate etc,.</p>
                     </div>
                 </div>
                 <div id="visual3" class="col-xs-12 col-sm-6 col-md-4 visual">
                     <img src="img/thumb.jpg" class="img-circle">
                     <div id="summary3" class="summary">
-                        <h2></h2>
-                        <p></p>
+                        <h2>Tweet monitor</h2>
+                        <p >visualizes twitter's sample stream providing info like tweet count, health, rate etc,.</p>
                     </div>
                 </div>
             </div>
             <div class="bottom-wrap bottom">
-                <div class="btn-wrap">
-                    <p class="next-btn" onclick="snapto('.screen-wrap2.prizes'); return false"></p>
-                </div>
+                <!-- <div class="btn-wrap">
+                    <p class="next-btn" onclick="snapto('.screen-wrap2.prizes'); return false">V</p>
+                </div> -->
+                <div id="dBtn1" class="dBtn"  onclick="snapto('.screen-wrap2.prizes'); return false"><span class="Arrow">&or;</span></div>
             </div>
         </div>
     </div>
@@ -78,26 +84,9 @@
             <h2 class="task-title section-title">ABOUT</h2>
             <div class="prizes-content section-content clearfix">
                 <p>I am a graduate student in Information Technology majoring in Data Science and Analytics at Rensselaer Polytechnic Institute.</p>
-                <!-- <div class="column-1 lfloat">
-                    <p class="prizes-img"></p>
-                    <p class="prizes-text first">FIRST PRIZE</p>
-                    <p class="prizes-text second">27" IMAC</p>
-                </div>
-                <div class="column-2 lfloat">
-                    <p class="prizes-img"></p>
-                    <p class="prizes-text first">SECOND PRIZE</p>
-                    <p class="prizes-text second">IPAD</p>
-                </div>
-                <div class="column-3 lfloat">
-                    <p class="prizes-img"></p>
-                    <p class="prizes-text first">THIRD PRIZE</p>
-                    <p class="prizes-text second">NEXUS 7</p>
-                </div> -->
             </div>
             <div class="bottom-wrap bottom">
-                <div class="btn-wrap">
-                    <p class="next-btn" onclick="snapto('.screen-wrap3.judges'); return false"></p>
-                </div>
+                 <div id="dBtn1" class="dBtn"  onclick="snapto('.screen-wrap3.judges'); return false"><span class="Arrow">&or;</span></div>
             </div>
         </div>
     </div>
@@ -105,14 +94,30 @@
         <div class="column centered clearfix">
             <h2 class="task-title section-title">CONNECT</h2>
             <div id="contactForm">
-                <script type="text/javascript" src="http://form.jotform.us/jsform/33556791855165"></script>
+              
+            </div>
+                <p id="contact" class="article">
+                    <a href="mailto:lakshmi.chenicheri@gmail.com">lakshmi.chenicheri@gmail.com</a>
+                    <br>
+                    <a href="Lakshmi_Resume.pdf">Resume</a>
+                </p>
+            </div>
+
+            <div id="footer">
+                <p class="article" id="copyright">&copy; Lakshmi Chenicheri, 2014</p>
+                <hr width="100%">
+                <ul class="icons">
+                    <li><a class="normal" href="https://github.com/chenil" target="_blank"><img src="img/github.svg" alt="Github"></a></li>
+                    <li><a class="normal" target="_blank" href="https://twitter.com/lakshmicc"><img src="img/twitter.svg" alt="Twitter"></a></li>
+                    <li><a class="normal" target="_blank" href="http://www.linkedin.com/pub/lakshmi-chenicheri/3a/130/10a"><img src="img/linkedin.svg" alt="linkedin"></a></li>                   
+                </ul>
             </div>
             
         </div>
     </div>
+
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 
-<!-- Mirrored from rockstarofdesign.net/ by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 19 Dec 2013 07:29:41 GMT -->
 </html>

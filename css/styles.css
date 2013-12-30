@@ -304,7 +304,7 @@ body{
     margin-top: 25px;
 }
 
-.bottom-wrap .btn-wrap .next-btn{
+/*.bottom-wrap .btn-wrap .next-btn{
     cursor: pointer;
     min-width: 45px;
     min-height: 45px;
@@ -312,7 +312,7 @@ body{
     max-height: 45px;
     background: url('../img/arrows.png') no-repeat scroll 45% -64px transparent;
     margin: 0 auto;
-}
+}*/
 .bottom-wrap .btn-wrap .next-btn.white{
     background-position: 45% -129px;
 }
