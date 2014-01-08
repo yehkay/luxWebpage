@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>tweets app</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="css/tweet.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id = "container" class="container">
+		<div id="realGraph">
+			<canvas id="mycanvas" width="800" height="200"></canvas>
+		</div>	
+		<div id = "tweetsContainer" class="col-xs-12 col-md-6">
+			<ul id="tweets" class="tweeclass"></ul>	
+		</div>
+		<div id = "hashContainer" class="col-xs-6 col-md-3">
+			<ul id="hashtags" class="hashclass"></ul>	
+		</div>
+	</div>
+	
+		
+	<script type="text/javascript" src="js/tweets.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="js/smoothie.js"></script>
+	<script src="/socket.io/socket.io.js"></script>  <!-- For streaming connection with the server-->
+	<script type="text/javascript" src="js/Chart.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script>
+		var socket = io.connect();
+		var count = 0;
+		var tweetList = $('#tweets');
+ 		var hashList = $('#hashtags');
+  		var hashItems = $('#hashtags li');
+
+  	  //Part 1, the real time graph
+  		var smoothie = new SmoothieChart();
+		smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/);
+
+		// Data
+		var line1 = new TimeSeries();
+
+		// Add a random value to each line every second
+		setInterval(function() {
+		  //get the count variable from socket below which is the data for the graph
+		  line1.append(new Date().getTime(), count);
+		  //make count = 0, so it refreshes every second
+		  count = 0;
+		}, 1000);
+
+		// Add to SmoothieChart
+		smoothie.addTimeSeries(line1);
+		
+
+  	  //ON TWEET --- SOCKET ----
+		socket.on('tweet', function (data) {
+			//Each time this functions runs, one tweet has been recieved, so a variable count is used to track the number of tweets
+			console.log(data);
+			count++;
+
+
+		  //PART 3, TWEET TICKER
+			var listItemHTML = '<li><div class="row"><div class="dp span1" style="background-image:url('+data.dp+');"></div><div class="tweet span8">' + data.text.toString() + '</div></div></li>';
+
+			$(listItemHTML)
+				.prependTo(tweetList)
+				.slideDown('slow');
+
+			$("#tweets li:gt(5):last").remove();
+
+
+			if(data.hashtag.toString() != ''){ 
+				//add hashtags
+				var hashHTML = '<li>' + '#' +data.hashtag.toString() + '</li>';
+				$(hashHTML)
+				.prependTo(hashList)
+				.slideDown('slow');   
+				$("#hashtags li:gt(6):last").remove();
+			} 
+		});       
+    
+	//get graph data
+	// $.get( "/getSourceCount", success, "json" );
+	// function success(dat){
+	// 	console.log(dat);
+	// 	var data = 
+	// 	[
+	// 		{
+	// 			value: dat[0],
+	// 			color:"#F81F71"
+	// 		},
+	// 		{
+	// 			value : dat[1],
+	// 			color : "#F4F0F2"
+	// 		},
+	// 		{
+	// 			value : dat[2],
+	// 			color : "#464646"
+	// 		},
+	// 		{
+	// 			value : dat[3],
+	// 			color : "#00CDEF"
+	// 		},
+	// 		{
+	// 			value : dat[4],
+	// 			color : "#C2F30D"
+	// 		}
+
+	// 	]
+	// 	var ctx = $("#myChart").get(0).getContext("2d");
+	// 	var myNewChart = new Chart(ctx).Doughnut(data);
+	// }
+
+	
+
+	</script>
+</body>
+</html>
