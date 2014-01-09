@@ -3,22 +3,42 @@
 <head>
 	<title>tweets app</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 	<link href="css/tweet.css" rel="stylesheet" type="text/css">
 	<link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id = "container" class="container">
-		<div id="realGraph">
+		<header><h1 id="header">Twitter Sample Stream Monitor</h1></header>
+		<div id="realGraph" class="holder">
+			<h3>Real-time tweet rate</h3>
 			<canvas id="mycanvas" width="800" height="200"></canvas>
+			<p>Shows the number of tweets per second exposed by <a href="https://dev.twitter.com/docs/api/1.1/get/statuses/sample">Twitter's sample stream</a></p>
+			<p>Using: node.js, socket.io, smoothiecharts.org, jQuery</p>
 		</div>	
-		<div id = "tweetsContainer" class="col-xs-12 col-md-6">
+		<div id="lineChart" class="holder">
+			<h3>Tweets/Hour</h3>
+			<canvas id="myChart" width="800" height="200"></canvas>
+			<p>Shows the tweets per hour on <span id="day"></span></p>
+			<p>Using: node.js, chartjs.org, mongoDB </p>
+		</div>
+		<div id="ticker" class="holder">
+			<h3>Tweet Ticker</h3>
+			<div id = "tweetsContainer" >
 			<ul id="tweets" class="tweeclass"></ul>	
+			</div>
+			<div id = "hashContainer" >
+				<ul id="hashtags" class="hashclass"></ul>	
+			</div>
+			<p>Shows the tweets' text + Hashtags in realtime </p>
+			<p>Using: node.js, socket.io, jQuery </p>
 		</div>
-		<div id = "hashContainer" class="col-xs-6 col-md-3">
-			<ul id="hashtags" class="hashclass"></ul>	
-		</div>
+		
 	</div>
+	<div id="footer">
+        <p class="article" id="copyright">&copy; Lakshmi Chenicheri, 2014</p>
+    </div>
 	
 		
 	<script type="text/javascript" src="js/tweets.js"></script>
@@ -35,7 +55,11 @@
   		var hashItems = $('#hashtags li');
 
   	  //Part 1, the real time graph
-  		var smoothie = new SmoothieChart();
+  		var smoothie = new SmoothieChart({
+  		  grid: { strokeStyle:'#DBDBDB', fillStyle:'#E4E4E4',
+          lineWidth: 1, millisPerLine: 250, verticalSections: 8, },
+  		  labels: { fillStyle:'#0364A5' }
+  		});
 		smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/);
 
 		// Data
@@ -50,18 +74,17 @@
 		}, 1000);
 
 		// Add to SmoothieChart
-		smoothie.addTimeSeries(line1);
+		smoothie.addTimeSeries(line1, { strokeStyle:'#0997F6', fillStyle:'rgba(84, 163, 216, 0.4)', lineWidth:2 });
 		
 
   	  //ON TWEET --- SOCKET ----
 		socket.on('tweet', function (data) {
 			//Each time this functions runs, one tweet has been recieved, so a variable count is used to track the number of tweets
-			console.log(data);
 			count++;
 
 
 		  //PART 3, TWEET TICKER
-			var listItemHTML = '<li><div class="row"><div class="dp span1" style="background-image:url('+data.dp+');"></div><div class="tweet span8">' + data.text.toString() + '</div></div></li>';
+			var listItemHTML = '<li><div class="row"><div class="dp span1" style="background-image:url('+data.dp+'); width: 48px; height: 48px;"></div><div class="tweet span8">' + data.text.toString() + '</div></div></li>';
 
 			$(listItemHTML)
 				.prependTo(tweetList)
@@ -80,40 +103,26 @@
 			} 
 		});       
     
-	//get graph data
-	// $.get( "/getSourceCount", success, "json" );
-	// function success(dat){
-	// 	console.log(dat);
-	// 	var data = 
-	// 	[
-	// 		{
-	// 			value: dat[0],
-	// 			color:"#F81F71"
-	// 		},
-	// 		{
-	// 			value : dat[1],
-	// 			color : "#F4F0F2"
-	// 		},
-	// 		{
-	// 			value : dat[2],
-	// 			color : "#464646"
-	// 		},
-	// 		{
-	// 			value : dat[3],
-	// 			color : "#00CDEF"
-	// 		},
-	// 		{
-	// 			value : dat[4],
-	// 			color : "#C2F30D"
-	// 		}
+		//Part 2 Line Chart
+		$.get( "/getDefaultCount", function(dat){
 
-	// 	]
-	// 	var ctx = $("#myChart").get(0).getContext("2d");
-	// 	var myNewChart = new Chart(ctx).Doughnut(data);
-	// }
-
-	
-
+			console.log("dat: " + dat);
+			$("#day").html("<b>"+dat._id+"</b>");
+			var data = {
+				labels : ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],
+				datasets : [
+					{
+						fillColor : "rgba(151,187,205,0.5)",
+						strokeColor : "rgba(151,187,205,1)",
+						pointColor : "rgba(151,187,205,1)",
+						pointStrokeColor : "#fff",
+						data : dat.count
+					}
+				]
+			}
+			var ctx = $("#myChart").get(0).getContext("2d");
+			var myNewChart = new Chart(ctx).Line(data);
+		}, "json" );
 	</script>
 </body>
 </html>

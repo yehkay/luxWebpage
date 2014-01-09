@@ -44,10 +44,10 @@ var twitter = require('ntwitter');
 
 var twit = new twitter({
   //Fill in these values before starting the application
-  consumer_key: '',
-  consumer_secret: '',
-  access_token_key: '',
-  access_token_secret: ''
+  consumer_key: 'V9LlcrBnYkN2aNNEcPZIug',
+  consumer_secret: 'FOeCACbdZU6b8dAhvwdgEXSdeKTLe9zDka1gfzmexs',
+  access_token_key: '2225748734-gnp0YdhaulqOTspywdVLuaYtmGGQHpmenmQ68nD',
+  access_token_secret: 'DruG5AOQXmHGBYov7ArhkeAfXkIwM7NI4DLFynZenOJez'
 });
 
 
@@ -94,14 +94,22 @@ twit.stream('statuses/sample', function(stream) {
 		counts.find({"_id": tweetDate}).toArray(function(err, docs){
 			if(docs.length == 0){
 				countObject.count[tweetHour]++;
-				counts.save(countObject, 
-				function (err, inserted) {});
+				counts.save(countObject, function (err, inserted) {});
+				//reset countObject
+				countObject = { "_id" : tweetDate, 
+							date: createdAt, 
+							count: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+					    };
 			}
 			else{
 				countObject = docs[0];
 				countObject.count[tweetHour]++;
-				counts.save(countObject, 
-				function (err, inserted) {});
+				counts.save(countObject, function (err, inserted) {});
+				//reset countObject
+				countObject = { "_id" : tweetDate, 
+							date: createdAt, 
+							count: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+					    };
 			}
 		});
 	});
@@ -117,9 +125,24 @@ function parseTwitterDate(text) {
 
 
 //ROUTERS
-// app.get('/getSourceCount',function (req, res) {
-//     res.json();
-// });
+//The API part
+app.get('/getDefaultCount',function (req, res) {
+	var defaultCount;
+	counts.find().toArray(function(err, docs){
+		//if there is only the dummy count
+		if (docs.length == 1){
+			defaultCount = docs[0];
+		}
+		//else get the penultimate count object
+		else{
+			defaultCount = docs[docs.length - 2];
+		}
+		res.json(defaultCount);
+	});    
+});
+
+
+//Routing the files
 
 app.get('/',function(req,res){
 	res.sendfile(__dirname + '/index.html');
