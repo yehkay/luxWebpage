@@ -126,6 +126,43 @@ function parseTwitterDate(text) {
 
 //ROUTERS
 //The API part
+
+//List of all dates(as an array) available in the database to be shown in the selector (dropdown)
+//read about 'javascript array.push() and forEach() methods'
+// step2
+app.get('/getAllDates',function (req, res) {
+	var allDates = [];
+	counts.find().toArray(function(err, docs){
+		//for each count doc, push the date into the array
+		docs.forEach(function(doc) {
+			//i don't want the dummy date
+			if(doc._id != "dummy")
+            	allDates.push(doc._id);
+          });
+		//send the array as a json response
+		res.json(allDates);
+	}); 
+});
+
+//Count for a prticular date from selector
+//step 3
+app.get('/getCountForDate/:date',function (req, res) {
+	var selectedDate = decodeURI(req.params.date);
+	var countForDate;
+	counts.find({"_id": selectedDate}).toArray(function(err, docs){
+		//if there is only the dummy count
+		if (docs.length == 0){
+			countForDate = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		}
+		//else get the penultimate count object
+		else{
+			countForDate = docs[0];
+		}
+		res.json(countForDate);
+	});    
+});
+
+//Default count - count from previous day
 app.get('/getDefaultCount',function (req, res) {
 	var defaultCount;
 	counts.find().toArray(function(err, docs){

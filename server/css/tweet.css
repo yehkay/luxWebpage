@@ -136,4 +136,16 @@ body{
 	margin-bottom: 30px;
 }
 
+/* NEW CSS*/
+
+#datePicker{
+	
+}
+
+#dateSelector{
+	width: 200px;
+	float: left;
+	margin-right: 30px;
+	margin-bottom: 50px;
+}
 
